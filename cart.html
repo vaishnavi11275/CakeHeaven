@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Cake Heaven</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #fdf4f0;
+            color: #4b3b3b;
+            line-height: 1.6;
+        }
+        .navbar {
+            background-color: #f4a6b1;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            color: #fff;
+            font-size: 24px;
+        }
+        .search-bar {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            width: 300px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin-left: auto;
+        }
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+        .cart {
+            padding: 2rem;
+            margin-top: 60px;
+        }
+        .cart h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #c4a900;
+        }
+        .cart-item {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .cart-item div {
+            flex: 1;
+        }
+        .cart-item h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+        .cart-item p {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #c4a900;
+        }
+        .remove-btn {
+            padding: 0.5rem 1rem;
+            background-color: #e24b4a;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .remove-btn:hover {
+            background-color: #d53b39;
+        }
+        .order-summary {
+            margin-top: 2rem;
+            background: #fff;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .order-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .order-summary li {
+            margin: 0.5rem 0;
+        }
+        .total-amount {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #c4a900;
+            margin-top: 1rem;
+        }
+        .button {
+            padding: 0.5rem 1rem;
+            background-color: #91e1c4;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            margin-top: 1rem;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #7dc5b4;
+        }
+        footer {
+            background-color: #f4a6b1;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+            margin-top: 2rem;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-section {
+            margin-top: 2rem;
+        }
+        .form-section input, .form-section textarea {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-section button {
+            background-color: #91e1c4;
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-section button:hover {
+            background-color: #7dc5b4;
+        }
+        .bill-summary {
+            margin-top: 2rem;
+            background: #fff;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Cake Heaven</h1>
+            </div>
+            <input type="text" class="search-bar" placeholder="Search...">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="cart">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <ul id="summary-items"></ul>
+            <div class="total-amount" id="total-amount">Total Amount: ₹0</div>
+            <button class="button" id="place-order-btn">Place Order</button>
+        </div>
+
+        <!-- Customer Form -->
+        <div class="form-section hidden" id="customer-form">
+            <h3>Enter Your Details</h3>
+            <input type="text" id="customer-name" placeholder="Name" required>
+            <input type="text" id="customer-address" placeholder="Address" required>
+            <input type="text" id="customer-number" placeholder="Phone Number" required>
+            <button class="button" id="pay-btn">Pay</button>
+        </div>
+
+        <!-- Bill Summary -->
+        <div class="bill-summary hidden" id="bill-summary">
+            <h3>Bill Summary</h3>
+            <div id="bill-items"></div>
+            <p><strong>Customer Name:</strong> <span id="bill-name"></span></p>
+            <p><strong>Address:</strong> <span id="bill-address"></span></p>
+            <p><strong>Phone Number:</strong> <span id="bill-number"></span></p>
+            <div class="total-amount" id="bill-total-amount">Total Amount: ₹0</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Cake Heaven | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Function to remove an item from the cart
+        function removeItemFromCart(name) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.name !== name);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCartItems();
+        }
+
+        // Function to load cart items
+        function loadCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContainer = document.getElementById('cart-items');
+            const summaryItems = document.getElementById('summary-items');
+            let totalAmount = 0;
+
+            cartContainer.innerHTML = '';
+            summaryItems.innerHTML = '';
+
+            cartItems.forEach(item => {
+                if (item.name !== 'Peanut Butter Brownie') { // Exclude Peanut Butter Brownie
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'cart-item';
+
+                    itemDiv.innerHTML = `
+                        <div>
+                            <h3>${item.name}</h3>
+                            <p>${item.price}</p>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    `;
+
+                    cartContainer.appendChild(itemDiv);
+
+                    const summaryItem = document.createElement('li');
+                    summaryItem.textContent = `${item.name}: ${item.price}`;
+                    summaryItems.appendChild(summaryItem);
+
+                    totalAmount += parseFloat(item.price.replace('₹', ''));
+                }
+            });
+
+            document.getElementById('total-amount').textContent = `Total Amount: ₹${totalAmount.toFixed(2)}`;
+
+            document.querySelectorAll('.remove-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const itemDiv = e.target.closest('.cart-item');
+                    const itemName = itemDiv.querySelector('h3').textContent;
+                    removeItemFromCart(itemName);
+                });
+            });
+        }
+
+        // Handle place order button click
+        document.getElementById('place-order-btn').addEventListener('click', () => {
+            document.getElementById('customer-form').classList.remove('hidden');
+            document.getElementById('order-summary').classList.add('hidden');
+        });
+
+        // Handle pay button click
+        document.getElementById('pay-btn').addEventListener('click', () => {
+            const name = document.getElementById('customer-name').value;
+            const address = document.getElementById('customer-address').value;
+            const number = document.getElementById('customer-number').value;
+
+            if (name && address && number) {
+                // Display Bill Summary
+                const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                const billItems = document.getElementById('bill-items');
+                let billTotalAmount = 0;
+
+                billItems.innerHTML = '';
+                cartItems.forEach(item => {
+                    if (item.name !== 'Peanut Butter Brownie') {
+                        const billItem = document.createElement('div');
+                        billItem.innerHTML = `<p>${item.name}: ${item.price}</p>`;
+                        billItems.appendChild(billItem);
+
+                        billTotalAmount += parseFloat(item.price.replace('₹', ''));
+                    }
+                });
+
+                document.getElementById('bill-name').textContent = name;
+                document.getElementById('bill-address').textContent = address;
+                document.getElementById('bill-number').textContent = number;
+                document.getElementById('bill-total-amount').textContent = `Total Amount: ₹${billTotalAmount.toFixed(2)}`;
+
+                document.getElementById('customer-form').classList.add('hidden');
+                document.getElementById('bill-summary').classList.remove('hidden');
+
+                // Clear the cart
+                localStorage.removeItem('cart');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        // Load cart items on page load
+        window.onload = loadCartItems;
+    </script>
+</body>
+</html>

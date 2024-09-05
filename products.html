@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Cake Heaven</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fdf4f0;
+            color: #4b3b3b;
+            line-height: 1.6;
+            min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: #f4a6b1;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .search-bar {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            width: 300px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin-left: auto;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 2rem;
+            margin-top: 60px; /* Adjust for fixed navbar */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .product {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .product h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .product p {
+            font-size: 1.25rem;
+            color: #c4a900;
+        }
+
+        /* Buttons */
+        .button {
+            padding: 0.5rem 1rem;
+            background-color: #91e1c4;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #7dc5b4;
+        }
+
+        .view-cart-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: #91e1c4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            text-decoration: none;
+        }
+
+        .view-cart-btn:hover {
+            background-color: #7dc5b4;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f4a6b1;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+            margin-top: auto; /* Push footer to the bottom */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-bar {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+
+            .nav-links {
+                display: block;
+                width: 100%;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Cake Heaven</h1>
+            </div>
+            <input type="text" class="search-bar" placeholder="Search...">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Products Section -->
+    <section class="products">
+        <!-- Product 1 -->
+        <div class="product">
+            <img src="chocolate_cake.jpeg" alt="Chocolate Cake">
+            <h3>Chocolate Cake</h3>
+            <p>₹20</p>
+            <button class="button add-to-cart-btn" data-name="Chocolate Cake" data-price="20" data-image="cake1.jpg">Add to Cart</button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product">
+            <img src="vanilla_cake.jpeg" alt="Vanilla Cake">
+            <h3>Vanilla Cake</h3>
+            <p>₹18</p>
+            <button class="button add-to-cart-btn" data-name="Vanilla Cake" data-price="18" data-image="cake2.jpg">Add to Cart</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product">
+            <img src="strawberry_cake.jpeg" alt="Strawberry Cake">
+            <h3>Strawberry Cake</h3>
+            <p>₹22</p>
+            <button class="button add-to-cart-btn" data-name="Strawberry Cake" data-price="22" data-image="cake3.jpg">Add to Cart</button>
+        </div>
+
+        <!-- View Cart Button -->
+        <a href="cart.html" class="view-cart-btn">View Cart</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Cake Heaven | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Function to add a product to the cart
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Check if the product already exists in the cart
+            const existingProduct = cart.find(item => item.name === product.name);
+
+            if (existingProduct) {
+                alert(`${product.name} is already in the cart!`);
+            } else {
+                cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(`${product.name} has been added to your cart!`);
+            }
+        }
+
+        // Handle add to cart button click
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const product = {
+                    name: e.target.getAttribute('data-name'),
+                    price: e.target.getAttribute('data-price'),
+                    image: e.target.getAttribute('data-image')
+                };
+
+                addToCart(product);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Heaven - Your Sweet Escape</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fdf4f0; /* Light cream background */
+            color: #4b3b3b; /* Dark chocolate text color */
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: #f4a6b1; /* Soft pink for the navbar */
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #fff; /* White text for the logo */
+            font-size: 24px;
+        }
+
+        .search-bar {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            width: 300px; /* Increased width */
+            margin-left: 1rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin-left: auto;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('bakery_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+            color: #fff;
+            margin-top: 60px; /* Adjust for fixed navbar */
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            color: #c4a900; /* Blackish yellow for hero heading */
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #c4a900; /* Blackish yellow for hero paragraph */
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #f4a6b1; /* Soft pink for buttons */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #e68b9a; /* Slightly darker pink for hover effect */
+        }
+
+        /* Image Section */
+        .image-section {
+            display: flex;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f4a6b1; /* Soft pink for the footer */
+            padding: 1rem;
+            text-align: center;
+            color: white;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.25rem;
+            }
+
+            .nav-links {
+                display: none; /* Hide menu items on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Cake Heaven</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li> <!-- Home menu item -->
+                <li><a href="products.html">Products</a></li> <!-- Products menu item -->
+                <li><a href="cart.html">Cart</a></li> <!-- Cart menu item -->
+            </ul>
+            <input type="text" class="search-bar" placeholder="Search..."> <!-- Search bar to the right -->
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h2>Welcome to Cake Heaven</h2>
+        <p>Delicious cakes and pastries made fresh for you!</p>
+        <a href="products.html" class="btn">Explore Our Collection</a>
+    </section
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Cake Heaven | All Rights Reserved</p>
+        <p><a href="mailto:info@cakeheaven.com">Contact Us</a></p>
+    </footer>
+</body>
+</html>
